@@ -105,7 +105,7 @@ bot.on('message', message=> {
             message.channel.send(GetRandomPhrase("drekirokr"));
             return;
         }
-        if (message.author.id === TATSU_ID) {
+        if (msgCont.indexOf('t!ratewaifu') > -1) {
             message.channel.send("Anything she says about me is not canon. :)");
             return;
         }
