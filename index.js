@@ -2,7 +2,7 @@ const MD5 = function(d){result = M(V(Y(X(d),8*d.length)));return result.toLowerC
 
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const token = 'NjQ2NjAwMzUyMzkyNjc1MzI4.XdTf1g.5hTGlLvrLDicBV0QSvxnWcfx3PU';
+//const token = 'NjQ2NjAwMzUyMzkyNjc1MzI4.XdTf1g.5hTGlLvrLDicBV0QSvxnWcfx3PU';
 
 const PREFIX = '?';
 
@@ -145,4 +145,4 @@ function GetRandomPhrase(identifier) {
     return p[r];
 }
 
-bot.login(token);
+bot.login(process.env.BOT_TOKEN);
