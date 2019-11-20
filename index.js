@@ -6,6 +6,9 @@ const bot = new Discord.Client();
 
 const PREFIX = '?';
 
+//
+const TATSU_ID = "172002275412279296";
+
 bot.on('ready', () => {
 console.log('Bot is online.');
 });
@@ -66,7 +69,7 @@ bot.on('message', message=> {
                     return;
                 }
                 // Check if it's Tatsumaki-chan
-                findMention = message.mentions.users.find(user => user.id === "172002275412279296");
+                findMention = message.mentions.users.find(user => user.id === TATSU_ID);
                 if (findMention !== null) {
                     message.channel.send("It's scientifically proven. --wait, she gets 0/10.");
                     return;
@@ -102,8 +105,7 @@ bot.on('message', message=> {
             message.channel.send(GetRandomPhrase("drekirokr"));
             return;
         }
-        findMention = message.mentions.users.find(user => user.id === "172002275412279296");
-        if (findMention !== null) {
+        if (message.author.id === TATSU_ID) {
             message.channel.send("Anything she says about me is not canon. :)");
             return;
         }
