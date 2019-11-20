@@ -65,6 +65,12 @@ bot.on('message', message=> {
                     message.channel.send("Heh, we are talking about me, aren't we? 10/10.");
                     return;
                 }
+                // Check if it's Tatsumaki-chan
+                findMention = message.mentions.users.find(user => user.id === "172002275412279296");
+                if (findMention !== null) {
+                    message.channel.send("It's scientifically proven. --wait, she gets 0/10.");
+                    return;
+                }
                 // Get waifu and rate it in the most idiotic way.
                 var waifuName = "";
                 for (var i = 1; i < args.length; i++) {
