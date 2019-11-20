@@ -102,6 +102,11 @@ bot.on('message', message=> {
             message.channel.send(GetRandomPhrase("drekirokr"));
             return;
         }
+        findMention = message.mentions.users.find(user => user.id === "172002275412279296");
+        if (findMention !== null) {
+            message.channel.send("Anything she says about me is not canon. :)");
+            return;
+        }
         // Generic mention
         message.channel.send(GetRandomPhrase("mention"));
     }
