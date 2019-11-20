@@ -1,0 +1,20 @@
+{
+  "name": "hikaribot",
+  "version": "1.0.0",
+  "description": "Hikari bot for Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Discord",
+    "bot",
+    "Ragnarokr",
+    "Project"
+  ],
+  "author": "Ragnarökr Project",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
