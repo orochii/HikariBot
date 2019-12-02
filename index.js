@@ -109,6 +109,10 @@ bot.on('message', message=> {
             message.channel.send("Anything she says about me is not canon. :)");
             return;
         }
+        if (msgCont.indexOf('good night') > -1) {
+            message.channel.send(GetRandomPhrase("goodnight"));
+            return;
+        }
         // Generic mention
         message.channel.send(GetRandomPhrase("mention"));
     }
@@ -149,7 +153,16 @@ let phrases = {
         "Subscribe to Orochii.",
         "I'd rather have a buffalo take a diarrhea dump in my ear.",
         "Press F1.",
-        "Put ? before commands. \nCommands are: ``lul`` ``youtube`` ``ratewaifu`` ``help``.\n\nMention me and you'll regret it, because it's useless.\nAnd that's all you're gonna get."]
+        "Put ? before commands. \nCommands are: ``lul`` ``youtube`` ``ratewaifu`` ``help``.\n\nMention me and you'll regret it, because it's useless.\nAnd that's all you're gonna get."],
+    goodnight: ["Same to you.",
+        "Have a nice sleepy sleep.",
+        "Ok, see you later alligator.",
+        "Rest well. Gotta gammak harder tomorrow.",
+        "Uhhh live long and prosper?",
+        "Someone once said: Another fap before the nap. --okay it was a dumb joke.",
+        "Take care of your eyesight.",
+        "Tip of today is... It's not gay if the tips never touch. Wat?",
+        "Come back anytime. Especially after you wake up."]
 }
 
 function GetRandomPhrase(identifier) {
