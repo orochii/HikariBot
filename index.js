@@ -91,8 +91,28 @@ bot.on('message', message=> {
                 message.channel.send(GetRandomPhrase("help"));
                 break;
             case 'lastvideo':
-            message.channel.send('Does this work?');
                 getLastVideo(message.channel);
+                break;
+            case 'purge':
+                // Only poopoopeepee can purge messages
+                let pppprole = message.guild.roles.find(r => r.name === "poopoopeepee");
+                if(message.member.roles.has(pppprole.id)) {
+                    // Get amount of messages to delete
+                    if (args.length < 2) {
+                        amount = 2;
+                    } else {
+                        amount = Number(args[1]) + 1;
+                    }
+                    let messagecount = amount.toString();
+                    message.channel.fetchMessages({limit: messagecount}).then(messages => {
+                        message.channel.bulkDelete(messages);
+                        // Log messages deleted
+                        message.channel.send("Total messages deleted: " + (amount-1)).then(message => message.delete(1000));
+                    }).catch(err => {
+                        console.log("Error while doing Bulk Delete");
+                        console.log(err);
+                    });
+                }
                 break;
         }
         return;
@@ -207,7 +227,6 @@ function StartScheduledMessages() {
  */
 function getLastVideo(channel) {
     var service = google.youtube('v3');
-    channel.send('Retrieving video (or so I hope)');
     service.playlistItems.list({
         key: process.env.YTAPI,
         part: 'snippet',
@@ -216,29 +235,25 @@ function getLastVideo(channel) {
     }, function(err, response) {
         if (err) {
             console.log('The API returned an error: ' + err);
-            channel.send('The API returned an error: ' + err);
             return;
         }
         var videos = response.data.items;
         if (videos.length == 0) {
             console.log('No video found.');
-            channel.send('No video found');
         } else {
             console.log('Found a video in my channel :^D!');
             var title = videos[0].snippet.title;
-            var description = videos[0].snippet.description;
             var thumbnailUrl = videos[0].snippet.thumbnails.maxres.url;
             var channelTitle = videos[0].snippet.channelTitle;
             var videoId = videos[0].snippet.resourceId.videoId;
             var videoUrl = "https://www.youtube.com/watch?v=" + videoId;
-            const embed = new Discord.RichEmbed()
-                .setColor('#000000')
-                .setTitle('Latest video!')
-                .setURL(videoUrl)
-                .setDescription("Check out " + channelTitle + " latest video! ")
-                .setImage(thumbnailUrl)
-                .addField(title, description);
-            channel.send(embed);
+            console.log('Got all necessary info');
+            const videoEmbed = new Discord.RichEmbed().setTitle('Latest video!');
+            videoEmbed.setColor('#000000');
+            videoEmbed.setURL(videoUrl);
+            videoEmbed.setDescription("See " + channelTitle + "'s new video! " + title);
+            videoEmbed.setImage(thumbnailUrl);
+            channel.send(videoEmbed);
         }
     });
 }
