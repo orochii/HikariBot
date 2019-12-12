@@ -91,7 +91,7 @@ bot.on('message', message=> {
                 message.channel.send(GetRandomPhrase("help"));
                 break;
             case 'lastvideo':
-                getLastVideo();
+                getLastVideo(message.channel);
                 break;
         }
         return;
@@ -204,7 +204,7 @@ function StartScheduledMessages() {
 /*
     YOUTUBE CHANNEL CHECK
  */
-function getLastVideo() {
+function getLastVideo(channel) {
     var service = google.youtube('v3');
     service.playlistItems.list({
         key: process.env.YTAPI,
@@ -227,7 +227,6 @@ function getLastVideo() {
             var channelTitle = videos[0].snippet.channelTitle;
             var videoId = videos[0].snippet.resourceId.videoId;
             var videoUrl = "https://www.youtube.com/watch?v=" + videoId;
-            let channel = bot.channels.find(c => c.name === 'youtube_channel');
             const embed = new Discord.RichEmbed()
                 .setColor('#000000')
                 .setTitle('Latest video!')
