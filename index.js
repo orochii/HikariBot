@@ -180,7 +180,7 @@ let messageData = [
     // DATE, CHANNEL, MESSAGE
     // seconds minutes hours Day Month Week
     ['00 00 00 * * 6', "showcase", "¡Espero que haya sido una semana productiva porque hoy es Sábado de Screens!"],
-    ['00 00 00 18 12 *', "showcase", "Feliz cumpleaños <@510176251093450762> xD. Espero que Orochii tenga el fanart de Emilia listo (?)."],
+    ['00 00 00 18 12 *', "general-spanish", "Feliz cumpleaños <@510176251093450762> xD. Espero que Orochii tenga el fanart de Emilia listo (?)."],
 ]
 let scheduledMessages = [];
 
