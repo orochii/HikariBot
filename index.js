@@ -2,6 +2,7 @@ const MD5 = function(d){result = M(V(Y(X(d),8*d.length)));return result.toLowerC
 
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const cron = require('cron');
 //const token = 'NjQ2NjAwMzUyMzkyNjc1MzI4.XdTf1g.5hTGlLvrLDicBV0QSvxnWcfx3PU';
 
 const PREFIX = '?';
@@ -171,4 +172,30 @@ function GetRandomPhrase(identifier) {
     return p[r];
 }
 
+/* 
+    CALENDAR
+*/
+//#region CALENDAR
+let messageData = [
+    // DATE, CHANNEL, MESSAGE
+    // seconds minutes hours Day Month Week
+    ['00 00 00 * * 6', "showcase", "¡Espero que haya sido una semana productiva porque hoy es Sábado de Screens!"],
+    ['00 00 00 18 12 *', "showcase", "Feliz cumpleaños <@510176251093450762> xD. Espero que Orochii tenga el fanart de Emilia listo (?)."],
+]
+let scheduledMessages = [];
+
+function StartScheduledMessages() {
+    for (var i = 0; i < scheduledMessages.length; i++) {
+        var cur = messageData[i];
+        scheduledMessages[i] = new cron.CronJob(cur[0], () => {
+            let channel = bot.channels.find(c => c.name === cur[1]);
+            channel.send(cur[2]).start;
+        });
+        // Start message
+        scheduledMessages[i].start();
+    }
+}
+
+// You could also make a command to pause and resume the job
+//#endregion
 bot.login(process.env.BOT_TOKEN);
