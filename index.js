@@ -207,6 +207,7 @@ function StartScheduledMessages() {
  */
 function getLastVideo(channel) {
     var service = google.youtube('v3');
+    channel.send('Retrieving video (or so I hope)');
     service.playlistItems.list({
         key: process.env.YTAPI,
         part: 'snippet',
