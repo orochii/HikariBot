@@ -91,6 +91,7 @@ bot.on('message', message=> {
                 message.channel.send(GetRandomPhrase("help"));
                 break;
             case 'lastvideo':
+            message.channel.send('Does this work?');
                 getLastVideo(message.channel);
                 break;
         }
