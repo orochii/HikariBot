@@ -215,11 +215,13 @@ function getLastVideo(channel) {
     }, function(err, response) {
         if (err) {
             console.log('The API returned an error: ' + err);
+            channel.send('The API returned an error: ' + err);
             return;
         }
         var videos = response.data.items;
         if (videos.length == 0) {
             console.log('No video found.');
+            channel.send('No video found');
         } else {
             console.log('Found a video in my channel :^D!');
             var title = videos[0].snippet.title;
