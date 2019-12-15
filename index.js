@@ -300,7 +300,6 @@ let youtubeCheck = new cron.CronJob('00 0,5 * * * *', () => {
 });
 youtubeCheck.start();
 //#endregion
-bot.login(process.env.BOT_TOKEN);
 
 function readLastVideo() {
     fs.readFile(VIDEOCACHE_FILE, {encoding: 'utf-8'}, function(err,data){
@@ -318,3 +317,5 @@ function writeLastVideo(data) {
         console.log('The file has been saved!');
     });
 }
+
+bot.login(process.env.BOT_TOKEN);
