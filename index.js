@@ -294,7 +294,7 @@ function getLastVideo(channel, check) {
 }
 
 // Check each 5 minutes for a new video in the channel.
-let youtubeCheck = new cron.CronJob('00 0,5 * * * *', () => {
+let youtubeCheck = new cron.CronJob('* */5 * * * *', () => {
     // If found a new video, post it on #youtube-channel
     getLastVideo(null, true);
 });
