@@ -68,7 +68,7 @@ bot.on('message', message=> {
                     message.channel.send(GetRandomPhrase("ratewaifuError"));
                     return;
                 }
-                let msgLow = msgCont.toLowerCase();
+                let msgLow = message.content.toLowerCase();
                 // Check if it's ANY Hikari or Ikumi
                 if (msgLow.indexOf('hikari') > -1) {
                     message.channel.send("Any Hikari gets 10/10. No contest.");
