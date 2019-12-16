@@ -21,11 +21,11 @@ function DoQuery(query, callback) {
 
 function GetCachedKey(key) {
     var query = "SELECT key,value FROM cache WHERE key = '" + key + "'";
+    var retVal = ""
     DoQuery(query, (res) => {
-        for (let row of res.rows) {
-            console.log(JSON.stringify(row));
-        }
+        retVal = row[0]["value"];
     });
+    return retVal;
 }
 function SetCachedKey(key, value) {
     var query = "UPDATE cache SET value = '" + value + "' WHERE name = '" + key + "'"
