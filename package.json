@@ -19,6 +19,7 @@
     "discord.js": "^11.5.1",
     "google-auth-library": "^5.7.0",
     "googleapis": "^46.0.0",
-    "nodemon": "^2.0.0"
+    "nodemon": "^2.0.0",
+    "pg": "^7.14.0"
   }
 }
