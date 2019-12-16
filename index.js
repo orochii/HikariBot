@@ -5,30 +5,28 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const cron = require('cron');
 const { Client } = require('pg');
-const data = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-})
 
 function DoQuery(query, callback) {
+    const data = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
+    })
     data.connect();
     data.query(query, (err, res) => {
-    if (err) throw err;
-    callback(res);
-    data.end();
+        if (err) throw err;
+        callback(res);
+        data.end();
     });
 }
 
-function GetCachedKey(key) {
+function GetCachedKey(key, call) {
     var query = "SELECT key,value FROM cache WHERE key = '" + key + "'";
-    var retVal = ""
     DoQuery(query, (res) => {
         for (let row of res.rows) {
-            retVal = row["value"];
+            console.log(JSON.stringify(row));
+            call(row["value"]);
         }
     });
-    console.log(retVal);
-    return retVal;
 }
 function SetCachedKey(key, value) {
     var query = "UPDATE cache SET value = '" + value + "' WHERE name = '" + key + "'"
@@ -40,7 +38,10 @@ const PREFIX = '?';
 //
 const TATSU_ID = "172002275412279296";
 
-let lastVideo = GetCachedKey("lastvideo");
+let lastVideo = "";
+GetCachedKey("lastvideo", (val)=> {
+    lastVideo = val;
+});
 
 bot.on('ready', () => {
 console.log('Bot is online.');
