@@ -23,8 +23,11 @@ function GetCachedKey(key) {
     var query = "SELECT key,value FROM cache WHERE key = '" + key + "'";
     var retVal = ""
     DoQuery(query, (res) => {
-        retVal = res.rows[0]["value"];
+        for (let row of res.rows) {
+            retVal = row["value"];
+        }
     });
+    console.log(retVal);
     return retVal;
 }
 function SetCachedKey(key, value) {
