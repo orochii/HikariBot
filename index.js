@@ -326,7 +326,7 @@ let youtubeCheck = new cron.CronJob('*/5 * * * *', () => {
     // If found a new video, post it on #youtube-channel
     getLastVideo(null, true);
 });
-youtubeCheck.start();
+//youtubeCheck.start();
 //#endregion
 
 bot.login(process.env.BOT_TOKEN);
